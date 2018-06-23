@@ -1,3 +1,4 @@
 zongxiang.iml
-/.idea/
+.idea/
 *.iml
+target/
