@@ -19,7 +19,7 @@
 	</bean>
 
 	<aop:config><!-- 切点表达式要定位到方法 -->
-		<aop:pointcut id="pointCut" expression="execution(* com.test.china.soft.service.*.*(..))" />
+		<aop:pointcut id="pointCut" expression="execution(* com.zx.service.*.*(..))" />
 		<aop:advisor pointcut-ref="pointCut" advice-ref="txAdvice" />
 	</aop:config>
 

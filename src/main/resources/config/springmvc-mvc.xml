@@ -10,7 +10,7 @@
 						http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
 	<!-- springmvc配置 -->
-	<context:component-scan base-package="com.test.china.soft"></context:component-scan>
+	<context:component-scan base-package="com.zx"></context:component-scan>
 
 	<!-- view配置 -->
 	<bean id="jspViewResolver"
