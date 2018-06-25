@@ -214,21 +214,22 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${plugin.maven.surefire}</version>
-                <configuration>
-                    <skipTests>${skipTests}</skipTests>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<version>${plugin.maven.surefire}</version>-->
+                <!--<configuration>-->
+                    <!--<skipTests>${skipTests}</skipTests>-->
+                    <!--<encoding>${project.build.sourceEncoding}</encoding>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${plugin.maven.war}</version>
                 <configuration>
-                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                    <!--<webXml>src/main/webapp/WEB-INF/web.xml</webXml>-->
+                    <webXml>src/main/resources/web.xml</webXml>
                 </configuration>
             </plugin>
         </plugins>
