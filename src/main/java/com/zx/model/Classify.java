@@ -1,5 +1,8 @@
 package com.zx.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
@@ -10,69 +13,32 @@ import java.util.Date;
  * @author cd
  * @since 2018-06-25
  */
-public class Classify  {
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Classify {
 
     /**
      * 分类id
      */
-	private Long classifyId;
+    private Long classifyId;
     /**
      * 分类名称
      */
-	private String classifyName;
+    private String classifyName;
     /**
      * 备注
      */
-	private String remark;
+    private String remark;
     /**
      * 创建时间
      */
-	private Date createTime;
+    private Date createTime;
     /**
      * 修改时间
      */
-	private Date updateTime;
-
-
-	public Long getClassifyId() {
-		return classifyId;
-	}
-
-	public void setClassifyId(Long classifyId) {
-		this.classifyId = classifyId;
-	}
-
-	public String getClassifyName() {
-		return classifyName;
-	}
-
-	public void setClassifyName(String classifyName) {
-		this.classifyName = classifyName;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    private Date updateTime;
 
 
 }
