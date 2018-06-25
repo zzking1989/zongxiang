@@ -11,7 +11,7 @@ import java.util.Date;
  * @author cd
  * @since 2018-06-25
  */
-public class User  {
+public class Users {
 
     /**
      * 用户id

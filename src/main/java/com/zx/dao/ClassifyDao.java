@@ -1,6 +1,7 @@
 package com.zx.dao;
 
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.Mapping;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.Mapping;
  * @author cd
  * @since 2018-06-25
  */
+@Mapper
 public interface ClassifyDao  {
 
 }

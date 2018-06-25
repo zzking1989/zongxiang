@@ -3,7 +3,7 @@
 <mapper namespace="com.zx.dao.UserDao">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.zx.model.User">
+	<resultMap id="BaseResultMap" type="com.zx.model.Users">
 		<id column="id" property="id" />
 		<result column="user_name" property="userName" />
 		<result column="password" property="password" />
@@ -31,5 +31,53 @@
     <sql id="Base_Column_List">
         id, user_name AS userName, password, user_portrait AS userPortrait, phone, real_name AS realName, age, id_number AS idNumber, mailbox, wechat, qq, microblog, user_authority AS userAuthority, user_status AS userStatus, invitation_num AS invitationNum, integral, remark, beiyong, create_time AS createTime, update_time AS updateTime, updateStatus_time AS updateStatusTime
     </sql>
+
+	<!--查询所有用户-->
+	<select id="selectUsersAll" resultMap="BaseResultMap">
+		SELECT * from users ORDER BY create_time
+	</select>
+
+	<!--根据id查询用户-->
+	<select id="selectUsersById"  parameterType="Long" resultMap="BaseResultMap">
+		SELECT * from users where id = #{id}
+	</select>
+
+	<!--根据用户名查询用户-->
+	<select id="selectUsersById"  parameterType="Long" resultMap="BaseResultMap">
+		SELECT * from users where user_name = #{userName}
+	</select>
+
+	<!--根据id删除用户-->
+	<delete id="deleteUsersById" parameterType="Long">
+		delete from users where id = #{id}
+	</delete>
+
+	<!--修改用户信息-->
+	<update id="updateUsers" parameterType="com.zx.model.Users">
+		update users
+		<set>
+			<if test="userName != null and userName != ''">user_name = #{userName},</if>
+			<if test="password != null and password != ''">password = #{password},</if>
+			<if test="userPortrait != null and userPortrait != ''">user_portrait = #{userPortrait},</if>
+			<if test="phone != null and phone != ''">phone = #{phone},</if>
+			<if test="realName != null and realName != ''">real_name = #{realName},</if>
+			<if test="age != null and age !=0">age = #{age},</if>
+			<if test="idNumber != null and idNumber != ''">id_number = #{idNumber},</if>
+			<if test="mailbox != null and phone != ''">mailbox = #{mailbox},</if>
+			<if test="wechat != null and wechat != ''">wechat = #{wechat},</if>
+			<if test="qq != null and qq != ''">qq = #{qq},</if>
+			<if test="microblog != null and microblog != ''">microblog = #{microblog},</if>
+			<if test="userAuthority != null and userAuthority !=0">user_authority = #{userAuthority},</if>
+			<if test="userStatus != null and userStatus !=0">user_status = #{userStatus},</if>
+			<if test="invitationNum != null and invitationNum !=0">invitation_num = #{invitationNum},</if>
+			<if test="integral != null and integral !=0">integral = #{integral},</if>
+			<if test="remark != null and remark != ''">remark = #{remark},</if>
+			<if test="beiyong != null and beiyong != ''">beiyong = #{beiyong},</if>
+			<if test="updateStatusTime != null and updateStatusTime != ''">updateStatus_time = #{updateStatusTime},</if>
+			update_time = sysdate()
+		</set>
+		where 1=1
+		<if test="id != null">and id = #{id}</if>
+	</update>
 
 </mapper>
