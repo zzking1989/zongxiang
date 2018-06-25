@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.dao.PostDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zx.model.Post">
+		<id column="post_id" property="postId" />
+		<result column="user_id" property="userId" />
+		<result column="post_classid" property="postClassid" />
+		<result column="title" property="title" />
+		<result column="title_picture" property="titlePicture" />
+		<result column="content" property="content" />
+		<result column="approval_status" property="approvalStatus" />
+		<result column="post_status" property="postStatus" />
+		<result column="Reading_num" property="ReadingNum" />
+		<result column="like_num" property="likeNum" />
+		<result column="diss_num" property="dissNum" />
+		<result column="comment_num" property="commentNum" />
+		<result column="reward" property="reward" />
+		<result column="post_note" property="postNote" />
+		<result column="create_time" property="createTime" />
+		<result column="review_time" property="reviewTime" />
+		<result column="update_time" property="updateTime" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        post_id AS postId, user_id AS userId, post_classid AS postClassid, title, title_picture AS titlePicture, content, approval_status AS approvalStatus, post_status AS postStatus, Reading_num AS ReadingNum, like_num AS likeNum, diss_num AS dissNum, comment_num AS commentNum, reward, post_note AS postNote, create_time AS createTime, review_time AS reviewTime, update_time AS updateTime
+    </sql>
+
+</mapper>

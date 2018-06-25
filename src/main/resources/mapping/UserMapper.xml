@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.dao.UserDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zx.model.User">
+		<id column="id" property="id" />
+		<result column="user_name" property="userName" />
+		<result column="password" property="password" />
+		<result column="user_portrait" property="userPortrait" />
+		<result column="phone" property="phone" />
+		<result column="real_name" property="realName" />
+		<result column="age" property="age" />
+		<result column="id_number" property="idNumber" />
+		<result column="mailbox" property="mailbox" />
+		<result column="wechat" property="wechat" />
+		<result column="qq" property="qq" />
+		<result column="microblog" property="microblog" />
+		<result column="user_authority" property="userAuthority" />
+		<result column="user_status" property="userStatus" />
+		<result column="invitation_num" property="invitationNum" />
+		<result column="integral" property="integral" />
+		<result column="remark" property="remark" />
+		<result column="beiyong" property="beiyong" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="updateStatus_time" property="updateStatusTime" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_name AS userName, password, user_portrait AS userPortrait, phone, real_name AS realName, age, id_number AS idNumber, mailbox, wechat, qq, microblog, user_authority AS userAuthority, user_status AS userStatus, invitation_num AS invitationNum, integral, remark, beiyong, create_time AS createTime, update_time AS updateTime, updateStatus_time AS updateStatusTime
+    </sql>
+
+</mapper>
