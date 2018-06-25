@@ -10,7 +10,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/ussm?characterEncoding=utf-8"></property>
+		<property name="url" value="jdbc:mysql://116.62.241.23:3306/zongxiang?characterEncoding=utf-8"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="123456"></property>
 	</bean>
@@ -18,7 +18,7 @@
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- <property name="typeAliases"> </property> -->
-		<property name="mapperLocations" value="classpath:resource/mapping/*.xml"></property>
+		<property name="mapperLocations" value="classpath:../resources/mapping/*.xml"></property>
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
