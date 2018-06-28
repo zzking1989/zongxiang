@@ -24,15 +24,10 @@ import java.io.IOException;
 public class UserController {
     @Autowired
     UserService userService;
-	@RequestMapping("/list")
-    public  String list(Model model) throws IOException {
+//	@RequestMapping("/list")
+//    public  String list(Model model) throws IOException {
+//        return "jsp/index2";
+//    }
 
-        return "jsp/index2";
-    }
-    @RequestMapping("/list2")
-    public String list2(Model model){
-        System.out.println("22222");
-        return "jsp/session_login";
-    }
 
 }
