@@ -1,13 +1,15 @@
 package com.zx.controller;
 
-import com.zx.model.Users;
+import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import com.zx.service.UserService;
+import com.zx.utils.Base64Util;
+import com.zx.utils.MD5Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import java.io.IOException;
 
 /**
  * <p>
@@ -23,10 +25,8 @@ public class UserController {
     @Autowired
     UserService userService;
 	@RequestMapping("/list")
-    public String list(Model model){
-        System.out.println("进入Controller");
-        List<Users> users = userService.selectUsersAll();
-        System.out.println(users);
+    public  String list(Model model) throws IOException {
+
         return "jsp/index2";
     }
     @RequestMapping("/list2")

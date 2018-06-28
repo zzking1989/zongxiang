@@ -6,6 +6,10 @@
     <meta name="content-type" content="text/html; charset=UTF-8">
 </head>
 <body>
+<img src="../images/logoo.png">
+
+
+
 <form action="list2" method="post">
     用户名:<input type="text" name="usename"><br>
     密&nbsp;&nbsp;码:<input type="password" name="pass"><br>
