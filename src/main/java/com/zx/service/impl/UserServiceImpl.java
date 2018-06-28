@@ -19,13 +19,42 @@ import java.util.List;
 @Service
 public class UserServiceImpl  implements UserService {
     @Autowired
-//    @Autowired(required=false)
      UserDao userDao;
 
+    @Override
+    public int saveUsers(Users users) {
+        Long id =users.getId();
+        if (id!=null||id!=0){
+            return userDao.updateUsers(users);
+        }else {
+            return userDao.insertUsers(users);
+        }
+    }
+
+    @Override
     public List<Users> selectUsersAll(){
-        System.out.println("进入service调用");
-        List<Users> users = userDao.selectUsersAll();
-        System.out.println("dao查询结束");
-        return users;
-    };
+        return userDao.selectUsersAll();
+    }
+
+    @Override
+    public List<Users> selectUsersList(Users users) {
+        return userDao.selectUsersList(users);
+    }
+
+    @Override
+    public Users selectUsersById(Long id) {
+        return userDao.selectUsersById(id);
+    }
+
+    @Override
+    public Users selectUsersByUserName(String userName) {
+        return userDao.selectUsersByUserName(userName);
+    }
+
+    @Override
+    public int deleteUsersById(Long id) {
+        return userDao.deleteUsersById(id);
+    }
+
+
 }

@@ -37,13 +37,66 @@
 		SELECT * from users ORDER BY create_time
 	</select>
 
+	<!--根据条件筛选-->
+	<select id="selectUsersList" parameterType="com.zx.model.Users" resultMap="BaseResultMap">
+		SELECT * from users
+		<where>
+			<if test="userName != null and userName != ''">
+				AND user_name = #{userName}
+			</if>
+			<if test="password != null and password != ''">
+				AND password = #{password}
+			</if>
+			<if test="phone != null and phone != ''">
+				AND phone = #{phone}
+			</if>
+			<if test="realName != null and realName != ''">
+				AND real_name = #{realName}
+			</if>
+			<if test="age != null ">
+				AND age = #{age}
+			</if>
+			<if test="idNumber != null and idNumber != ''">
+				AND id_number = #{idNumber}
+			</if>
+			<if test="mailbox != null and mailbox != ''">
+				AND mailbox = #{mailbox}
+			</if>
+			<if test="wechat != null and wechat != ''">
+				AND wechat = #{wechat}
+			</if>
+			<if test="qq != null and qq != ''">
+				AND qq = #{qq}
+			</if>
+			<if test="microblog != null and microblog != ''">
+				AND microblog = #{microblog}
+			</if>
+			<if test="userAuthority != null ">
+				AND user_authority = #{userAuthority}
+			</if>
+			<if test="userStatus != null ">
+				AND user_status = #{userStatus}
+			</if>
+			<if test="invitationNum != null ">
+				AND invitation_num = #{invitationNum}
+			</if>
+			<if test="integral != null ">
+				AND integral = #{integral}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+		</where>
+	</select>
+
+
 	<!--根据id查询用户-->
 	<select id="selectUsersById"  parameterType="Long" resultMap="BaseResultMap">
 		SELECT * from users where id = #{id}
 	</select>
 
 	<!--根据用户名查询用户-->
-	<select id="selectUsersByUserName"  parameterType="Long" resultMap="BaseResultMap">
+	<select id="selectUsersByUserName"  parameterType="String" resultMap="BaseResultMap">
 		SELECT * from users where user_name = #{userName}
 	</select>
 
@@ -79,5 +132,50 @@
 		where 1=1
 		<if test="id != null">and id = #{id}</if>
 	</update>
+
+	<!--新增-->
+	<insert id="insertUsers" parameterType="com.zx.model.Users" useGeneratedKeys="true" keyProperty="id">
+		insert into users(
+		<if test="id != null and id != 0">id,</if>
+		<if test="userName != null and userName != ''">user_name,</if>
+		<if test="password != null and password != ''">password,</if>
+		<if test="userPortrait != null and userPortrait != ''">user_portrait,</if>
+		<if test="phone != null and phone != ''">phone,</if>
+		<if test="realName != null and realName != ''">real_name,</if>
+		<if test="age != null and age !=0">age,</if>
+		<if test="idNumber != null and idNumber != ''">id_number,</if>
+		<if test="mailbox != null and phone != ''">mailbox,</if>
+		<if test="wechat != null and wechat != ''">wechat,</if>
+		<if test="qq != null and qq != ''">qq,</if>
+		<if test="microblog != null and microblog != ''">microblog,</if>
+		<if test="userAuthority != null and userAuthority !=0">user_authority,</if>
+		<if test="userStatus != null and userStatus !=0">user_status,</if>
+		<if test="invitationNum != null and invitationNum !=0">invitation_num,</if>
+		<if test="integral != null and integral !=0">integral,</if>
+		<if test="remark != null and remark != ''">remark,</if>
+		<if test="beiyong != null and beiyong != ''">beiyong,</if>
+		create_time
+		)values(
+		<if test="id != null and id != 0">#{id},</if>
+		<if test="userName != null and userName != ''">#{userName},</if>
+		<if test="password != null and password != ''">#{password},</if>
+		<if test="userPortrait != null and userPortrait != ''">#{userPortrait},</if>
+		<if test="phone != null and phone != ''">#{phone},</if>
+		<if test="realName != null and realName != ''">#{realName},</if>
+		<if test="age != null and age !=0">#{age},</if>
+		<if test="idNumber != null and idNumber != ''">#{idNumber},</if>
+		<if test="mailbox != null and phone != ''">#{mailbox},</if>
+		<if test="wechat != null and wechat != ''">#{wechat},</if>
+		<if test="qq != null and qq != ''">#{qq},</if>
+		<if test="microblog != null and microblog != ''">#{microblog},</if>
+		<if test="userAuthority != null and userAuthority !=0">#{userAuthority},</if>
+		<if test="userStatus != null and userStatus !=0">#{userStatus},</if>
+		<if test="invitationNum != null and invitationNum !=0">#{invitationNum},</if>
+		<if test="integral != null and integral !=0">#{integral},</if>
+		<if test="remark != null and remark != ''">#{remark},</if>
+		<if test="beiyong != null and beiyong != ''">#{beiyong},</if>
+		sysdate()
+		)
+	</insert>
 
 </mapper>
