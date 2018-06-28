@@ -43,7 +43,7 @@
 	</select>
 
 	<!--根据用户名查询用户-->
-	<select id="selectUsersById"  parameterType="Long" resultMap="BaseResultMap">
+	<select id="selectUsersByUserName"  parameterType="Long" resultMap="BaseResultMap">
 		SELECT * from users where user_name = #{userName}
 	</select>
 

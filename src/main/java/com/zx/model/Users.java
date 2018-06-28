@@ -1,5 +1,7 @@
 package com.zx.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
 
@@ -11,6 +13,7 @@ import java.util.Date;
  * @author cd
  * @since 2018-06-25
  */
+@Data
 public class Users {
 
     /**

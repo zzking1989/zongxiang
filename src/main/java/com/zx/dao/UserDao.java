@@ -1,6 +1,9 @@
 package com.zx.dao;
 
+import com.zx.model.Users;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -10,7 +13,12 @@ import org.apache.ibatis.annotations.Mapper;
  * @author cd
  * @since 2018-06-25
  */
-@Mapper
+
+
+//@Repository
+//@Component
+    @Mapper
 public interface UserDao {
+public List<Users>selectUsersAll();
 
 }
