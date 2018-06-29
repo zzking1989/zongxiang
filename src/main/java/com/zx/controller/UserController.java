@@ -1,8 +1,11 @@
 package com.zx.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import com.zx.model.Users;
 import com.zx.service.UserService;
+import com.zx.utils.ReturnJson;
+import com.zx.utils.ZongXiangResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -25,6 +27,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     UserService userService;
     /**
@@ -64,22 +67,26 @@ public class UserController {
      */
     @RequestMapping("/ajaxLogin")
     @ResponseBody
-    public String ajaxLogin(HttpServletRequest request,String username, String password) {
+    public ZongXiangResult ajaxLogin(HttpServletRequest request, String username, String password) {
+        ZongXiangResult z=null;
         System.out.println("登录验证");
-        System.out.println(username+"+"+password);
         if (username.equals("")||password.equals("")){
-            System.out.println("用户名或者密码空");
-            return "用户名或者密码不能为空";
+            z.build(3,"用户名或者密码不能为空");
+            logger.error("用户名或者密码空");
+            return  z;
         }
         Users users = userService.selectUsersByUserName(username);
         System.out.println("users="+users);
-        if (users==null||password.equals(users.getPassword())){
-            System.out.println("用户名或者密码不正确");
-            return "用户名或者密码不正确";
+        if (users==null||!password.equals(users.getPassword())){
+            z.build(2,"用户名或者密码不正确");
+            logger.error("用户名或者密码不正确");
+            return z;
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userName",username);
-            return "ok";
+            z.build(1,"登录成功");
+            logger.info(username+"登录成功");
+            return z;
         }
     }
 

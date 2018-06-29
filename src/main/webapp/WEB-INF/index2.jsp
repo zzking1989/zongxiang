@@ -13,7 +13,7 @@
 <c:if test="${empty userName}">
     <ul>
         <li><a href="#">注册</a></li>
-        <li><a href="http://localhost:8080/user/login">登录</a></li>
+        <li><a href="/user/login">登录</a></li>
     </ul>
 </c:if>
 
