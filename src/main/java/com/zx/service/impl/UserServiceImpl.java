@@ -24,7 +24,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public int saveUsers(Users users) {
         Long id =users.getId();
-        if (id!=null||id!=0){
+        if (id!=null&&id!=0){
             return userDao.updateUsers(users);
         }else {
             return userDao.insertUsers(users);
