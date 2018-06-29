@@ -10,14 +10,6 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery-1.8.3.js"></script>
 <body>
-<%--<form id="signupForm" onclick="login()" >--%>
-    <%--<h4>登录：</h4>--%>
-    <%--<input type="text"     name="username"      placeholder="用户名"   /><br>--%>
-    <%--<input type="password" name="password"  placeholder="密码"   />--%>
-    <%--<span class="span1"></span>--%>
-    <%--<a href="#">忘记密码了？</a>--%>
-    <%--<button class="btn btn-success btn-block">登录</button>--%>
-<%--</form>--%>
 <form id="loginForm" name="loginForm" >
          <table  align="center">
              <tr>
@@ -36,7 +28,6 @@
           </table>
      </form>
 <script>
-
     $(function() {
         $('#submit').click(function() {
             $.ajax({
@@ -45,12 +36,10 @@
                 dataType:'json',
                 data: $("#loginForm").serializeArray(),
                 success: function(data) {
-                    alert("进入返回")
-                    alert(data)
-                    alert(data.name1)
-                    alert(data.code1)
+                    console.log(data)
+                    console.log("进入返回")
                     if (data.code1 == 1) {
-                    window.location.href = 'http://localhost:8080/user/login';
+                    window.location.href = '/user/login';
                     }else {
                         $('.span1').html(data.name1)
                     }
@@ -58,45 +47,6 @@
             });
         });
     });
-    // $('#loginForm').on('submit', function (e){
-    //             e . preventDefault();
-    //             $.ajax( {
-    //                 type : "POST",
-    //                 dataType: "json",
-    //                 url : '/user/ajaxLogin',
-    //                 data : $(this) . serialize(),
-    //                 success : function (res) {
-    //                     alert(res)
-    //                     alert("111")
-    //                       if ( res== 'ok') {
-    //                               alert(res);
-    //                               //成功后跳转路由设置
-    //                               window . location . href = 'http://localhost:8080/user/login';
-    //                            } else {
-    //                                        alert(res);
-    //                                   $('.span1').html(res)
-    //                                }
-    //                        }
-    //                 });
-    //               });
-
-    // function login() {
-    //     alert("ajax")
-    //     $.ajax({
-    //         type: "POST",
-    //         url: 'user/ajaxLogin',
-    //         data: $('#signupForm').serialize(),
-    //         success: function(r) {
-    //             if (r==ok) {
-    //                 parent.location.href = 'http://localhost:8080/user/login';
-    //             } else {
-    //                 $.span1.html(r)
-    //                 alert(r)
-    //                 layer.msg(r);
-    //             }
-    //         }
-    //     });
-    // }
 </script>
 </body>
 </html>
