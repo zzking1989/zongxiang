@@ -47,10 +47,13 @@
                 success: function(data) {
                     alert("进入返回")
                     alert(data)
-                    alert(data.name)
-                    alert(msg.code)
-
-                    window .location .href = 'http://localhost:8080/user/login';
+                    alert(data.name1)
+                    alert(data.code1)
+                    if (data.code1 == 1) {
+                    window.location.href = 'http://localhost:8080/user/login';
+                    }else {
+                        $('.span1').html(data.name1)
+                    }
                 }
             });
         });
