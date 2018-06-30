@@ -2,6 +2,7 @@ package com.zx.controller;
 
 import com.zx.model.Users;
 import com.zx.service.UserService;
+import com.zx.utils.IsMobile;
 import com.zx.utils.ReturnJson;
 import com.zx.utils.ZongXiangResult;
 import org.slf4j.Logger;
@@ -10,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,7 +42,12 @@ public class UserController {
      */
     @RequestMapping("/index")
     public  String index(HttpServletRequest request, Model model) {
-        System.out.println("转跳首页");
+        String requestHeader = request.getHeader("user-agent");
+        if(IsMobile.isMobileDevice(requestHeader)){
+            logger.info("使用手机浏览器转跳首页");
+        }else{
+            logger.info("使用web浏览器转跳首页");
+        }
         HttpSession session = request.getSession();
         if (session.getAttribute("userName")!=null&&session.getAttribute("userName")!=""){
         String userName = session.getAttribute("userName").toString();
@@ -68,6 +77,7 @@ public class UserController {
     @RequestMapping("/ajaxLogin")
     @ResponseBody
     public ZongXiangResult ajaxLogin(HttpServletRequest request, String username, String password) {
+
         ZongXiangResult z=null;
         System.out.println("登录验证");
         if (username.equals("")||password.equals("")){
@@ -89,5 +99,26 @@ public class UserController {
             return z;
         }
     }
+
+    /**
+     * 转跳add
+     * @param
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("/add")
+    public  String add() {
+        System.out.println("转跳用户页面");
+        return "jsp/addUser";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnJson save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
+            throws Exception {
+            userService.saveUsers(users,titleImg);
+        return new ReturnJson(true, "", null);
+    }
+
 
 }

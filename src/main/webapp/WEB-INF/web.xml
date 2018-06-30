@@ -55,9 +55,22 @@
     <servlet-name>SpringMVC</servlet-name>  <!--指定servlet的名称-->
     <url-pattern>/</url-pattern>        <!--指定servlet所对应的URL-->
   </servlet-mapping>
-
+<!--首页-->
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
+<!--配置文件下载类型-->
+  <mime-mapping>
+    <extension>xls</extension>
+    <mime-type>application/octet-stream</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>rar</extension>
+    <mime-type>application/octet-stream</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>doc</extension>
+    <mime-type>application/octet-stream</mime-type>
+  </mime-mapping>
 
 </web-app>

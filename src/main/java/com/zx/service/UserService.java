@@ -1,6 +1,7 @@
 package com.zx.service;
 
 import com.zx.model.Users;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public interface UserService  {
 
     //新增或修改用户
-    public int saveUsers (Users users);
+    public int saveUsers (Users users, MultipartFile titleImg) throws Exception;
 
     //查询所有用户
     public List<Users>selectUsersAll();
