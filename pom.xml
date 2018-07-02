@@ -222,7 +222,25 @@
             <version>1.4</version>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>com.baidu</groupId>-->
+            <!--<artifactId>ueditor</artifactId>-->
+            <!--<version></version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/cn.songxinqiang/com.baidu.ueditor -->
 
+
+        <!--<dependency>-->
+            <!--<groupId>cn.songxinqiang</groupId>-->
+            <!--<artifactId>com.baidu.ueditor</artifactId>-->
+            <!--<version>1.1.2-offical</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/cn.songxinqiang/com.baidu.ueditor &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>cn.songxinqiang</groupId>-->
+            <!--<artifactId>com.baidu.ueditor</artifactId>-->
+            <!--<version>1.1.2-edit-1.0</version>-->
+        <!--</dependency>-->
 
 
 

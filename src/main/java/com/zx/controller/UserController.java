@@ -100,17 +100,7 @@ public class UserController {
         }
     }
 
-    /**
-     * 转跳add
-     * @param
-     * @return
-     * @throws IOException
-     */
-    @RequestMapping("/add")
-    public  String add() {
-        System.out.println("转跳用户详情页面");
-        return "jsp/addUser";
-    }
+
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -118,6 +108,27 @@ public class UserController {
             throws Exception {
             userService.saveUsers(users,titleImg);
         return new ReturnJson(true, "", null);
+    }
+
+    /**
+     * 转跳userMsg
+     * @param
+     * @return
+     */
+    @RequestMapping("/userMsg")
+    public  String userMsg() {
+        System.out.println("转跳用户详情页面");
+        return "jsp/userMsg";
+    }
+    /**
+     * 转跳ueditor
+     * @param
+     * @return
+     */
+    @RequestMapping("/ueditor")
+    public  String ueditor() {
+        System.out.println("转跳用户详情页面");
+        return "jsp/ueditor";
     }
 
 

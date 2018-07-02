@@ -47,7 +47,7 @@
                     window.location.href = '/user/index';
                     }else {
                         alert(data.name1);
-                        $('div.span p').text(data.name1)
+                        $('div.span p').html(data.name1)
                     }
                 }
             });
