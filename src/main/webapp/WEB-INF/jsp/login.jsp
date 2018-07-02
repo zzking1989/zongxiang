@@ -20,13 +20,17 @@
                  <td>密  码：</td>
                  <td colspan="2"><input type="password" name="password" id="password" /></td>
               </tr>
-             <span class="span1"></span>
+
                  <td colspan="3" align="center">
                       <input id="submit" type="submit" value="登录"/>
                  </td>
               </tr>
           </table>
      </form>
+<div class="span">
+    <p></p>
+    <span class="span1" id="span1" style="color: brown"></span>
+</div>
 <script>
     $(function() {
         $('#submit').click(function() {
@@ -36,12 +40,14 @@
                 dataType:'json',
                 data: $("#loginForm").serializeArray(),
                 success: function(data) {
-                    console.log(data)
-                    console.log("进入返回")
+                    // console.log(data)
+                    // alert(data)
+                    // alert(data.code1)
                     if (data.code1 == 1) {
-                    window.location.href = '/user/login';
+                    window.location.href = '/user/index';
                     }else {
-                        $('.span1').html(data.name1)
+                        alert(data.name1);
+                        $('div.span p').text(data.name1)
                     }
                 }
             });

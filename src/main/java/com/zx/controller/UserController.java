@@ -76,27 +76,27 @@ public class UserController {
      */
     @RequestMapping("/ajaxLogin")
     @ResponseBody
-    public ZongXiangResult ajaxLogin(HttpServletRequest request, String username, String password) {
 
-        ZongXiangResult z=null;
+    public ZongXiangResult ajaxLogin(HttpServletRequest request, String username, String password) {
         System.out.println("登录验证");
+//        ZongXiangResult zongXiangResult =null;
         if (username.equals("")||password.equals("")){
-            z.build(3,"用户名或者密码不能为空");
             logger.error("用户名或者密码空");
-            return  z;
+//            ZongXiangResult result3 = new ZongXiangResult(3,"用户名或者密码不能为空");
+            return  new ZongXiangResult(3,"用户名或者密码不能为空");
         }
         Users users = userService.selectUsersByUserName(username);
         System.out.println("users="+users);
         if (users==null||!password.equals(users.getPassword())){
-            z.build(2,"用户名或者密码不正确");
             logger.error("用户名或者密码不正确");
-            return z;
+//            ZongXiangResult result2 = new ZongXiangResult(2,"用户名或者密码不正确");
+            return new ZongXiangResult(2,"用户名或者密码不正确");
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userName",username);
-            z.build(1,"登录成功");
             logger.info(username+"登录成功");
-            return z;
+//            ZongXiangResult result1 = new ZongXiangResult(1,"登录成功");
+            return    new ZongXiangResult(1,"登录成功");
         }
     }
 
@@ -108,7 +108,7 @@ public class UserController {
      */
     @RequestMapping("/add")
     public  String add() {
-        System.out.println("转跳用户页面");
+        System.out.println("转跳用户详情页面");
         return "jsp/addUser";
     }
 
