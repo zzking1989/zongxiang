@@ -14,5 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/post")
 public class PostController {
+    /**
+     * 转跳到富文本页面
+     * @param
+     * @return
+     */
+    @RequestMapping("/ueditor")
+    public  String ueditor() {
+        System.out.println("转跳用户详情页面");
+        return "jsp/ueditor";
+    }
 	
 }

@@ -100,8 +100,6 @@ public class UserController {
         }
     }
 
-
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public ReturnJson save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
@@ -111,7 +109,7 @@ public class UserController {
     }
 
     /**
-     * 转跳userMsg
+     * 转跳用户详情
      * @param
      * @return
      */
@@ -120,16 +118,7 @@ public class UserController {
         System.out.println("转跳用户详情页面");
         return "jsp/userMsg";
     }
-    /**
-     * 转跳ueditor
-     * @param
-     * @return
-     */
-    @RequestMapping("/ueditor")
-    public  String ueditor() {
-        System.out.println("转跳用户详情页面");
-        return "jsp/ueditor";
-    }
+
 
 
 }
