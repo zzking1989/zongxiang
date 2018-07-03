@@ -16,11 +16,13 @@
 
 <body>
 <h1>测试测试测试</h1>
-<form action="" method="post">
-<!-- 加载编辑器的容器 -->
-<script id="container" name="content" type="text/plain">
-        这里写你的初始化内容
+<form action="" method="post" id="u" action="/post/save" >
+    name:<input type="text" class="text" name="userName" id="userName" />
+    <!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+    这里写你的初始化内容
     </script>
+    <input type="submit"  value="提交"/>
 </form>
 <!-- 配置文件 -->
 <script type="text/javascript" src="../js/ueditor/ueditor.config.js"></script>

@@ -4,6 +4,8 @@ package com.zx.utils;
  * 公共配置类
  */
 public class configuration {
+    //本地资源访问地址头
+    public static String URL ="http://localhost/zx";
     //图片总存储目录
     public static String ZONGXIANGIMAGE ="c:\\zongxiangimage";
     //用户头像储存目录

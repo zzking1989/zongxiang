@@ -14,23 +14,25 @@
 </head>
 <body>
 <form method="post" id="f" action="/user/save" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="1">
+    <input type="hidden" name="id" value="${(user.id)}">
     <table class="table">
     <tr>
-        <td class="tdTitle" width="15%">用户名:</td>
+        <td class="tdTitle" width="5%">用户名:</td>
         <td width="35%">
             <input type="text" class="text" name="userName" id="userName" value="${(user.userName)}" />
         </td>
-        <td class="tdTitle" width="15%">密码:</td>
+    </tr>
+        <tr>
+        <td class="tdTitle" width="5%">密码:</td>
         <td width="35%">
             <input type="text" class="text" name="password" id="password" value="${(user.password)}"/>
         </td>
     </tr>
     <tr>
-        <td class="tdTitle" width="15%">图片:</td>
+        <td class="tdTitle" width="5%">图片:</td>
         <td colspan="3">
             <input type="file" id="titleImg" name="titleImg" onchange="selectFile(this,0);"/>
-            <img src="${(datasUrl)}" style="width:500px;width:500px;" onclick="javascript:window.open(this.src);"
+            <img src="${(user.userPortrait)}" style="width:100px;width:100px;" onclick="javascript:window.open(this.src);"
             />
         </td>
     </tr>

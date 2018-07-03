@@ -75,7 +75,7 @@
     <mvc:resources location="/" mapping="/**/*.mp3"/>
     <mvc:resources location="/" mapping="/**/*.mp4"/>
 
-
-
+    <!--这个是图片目标，是位于根目录，是在服务器中，而非是assets-->
+    <mvc:resources location="/ueditor/" mapping="/ueditor/**"></mvc:resources>
 
 </beans>

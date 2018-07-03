@@ -5,6 +5,7 @@ import com.zx.service.UserService;
 import com.zx.utils.IsMobile;
 import com.zx.utils.ReturnJson;
 import com.zx.utils.ZongXiangResult;
+import com.zx.utils.configuration;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,11 +106,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseBody
-    public ReturnJson save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
+    public String save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
             throws Exception {
             userService.saveUsers(users,titleImg);
-        return new ReturnJson(true, "", null);
+        return "redirect:/user/userMsg";
     }
     /**
      * 用户退出
@@ -129,8 +129,13 @@ public class UserController {
      * @return
      */
     @RequestMapping("/userMsg")
-    public  String userMsg() {
+    public  String userMsg(Model model) {
         System.out.println("转跳用户详情页面");
+        Users users = userService.selectUsersById(1L);
+        String img =configuration.URL+users.getUserPortrait().replace("\\","/");
+        System.out.println(img);
+        users.setUserPortrait(img);
+        model.addAttribute("user",users);
         return "jsp/userMsg";
     }
 
