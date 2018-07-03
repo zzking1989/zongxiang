@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -112,7 +111,18 @@ public class UserController {
             userService.saveUsers(users,titleImg);
         return new ReturnJson(true, "", null);
     }
-
+    /**
+     * 用户退出
+     * @param
+     * @return
+     */
+    @RequestMapping("/loginout")
+    public  String loginout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+         session.removeAttribute("userName");
+        System.out.println("用户退出");
+        return "index2";
+    }
     /**
      * 转跳用户详情
      * @param

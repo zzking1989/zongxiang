@@ -7,18 +7,15 @@
 <c:if test="${ not empty userName}">
     <ul>
         <li><a href="#">${userName},欢迎!</a></li>
-        <li><a href="">退出</a></li>
+        <li><a href="/user/loginout">退出</a></li>
     </ul>
 </c:if>
 <c:if test="${empty userName}">
     <ul>
-        <li><a href="#">注册</a></li>
+        <li><a href="">注册</a></li>
         <li><a href="/user/login">登录</a></li>
     </ul>
 </c:if>
-
-
-
 
 <h1>首页</h1>
 <h2>Hello World!</h2>
