@@ -10,7 +10,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery-1.8.3.js"></script>
 <body>
-<form id="loginForm" name="loginForm" >
+<form id="form1" onsubmit="return false" action="##" method="post" >
          <table  align="center">
              <tr>
                  <td>用户名：</td>
@@ -22,37 +22,37 @@
               </tr>
 
                  <td colspan="3" align="center">
-                      <input id="submit" type="submit" value="登录"/>
+                      <input id="submit" type="submit"  onclick="login()" value="登录"/>
                  </td>
               </tr>
+             </tr>
+             <td colspan="3" align="center">
+                 <span class="span1" id="span1" style="color: brown"></span>
+             </td>
+             </tr>
           </table>
      </form>
-<div class="span">
-    <p></p>
-    <span class="span1" id="span1" style="color: brown"></span>
-</div>
 <script>
-    $(function() {
-        $('#submit').click(function() {
-            $.ajax({
-                url: '/user/ajaxLogin',
-                type: 'post',
-                dataType:'json',
-                data: $("#loginForm").serializeArray(),
-                success: function(data) {
-                    // console.log(data)
-                    // alert(data)
-                    // alert(data.code1)
-                    if (data.code1 == 1) {
-                    window.location.href = '/user/index';
-                    }else {
-                        alert(data.name1);
-                        $('div.span p').html(data.name1)
-                    }
+    function login() {
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "",//预期服务器返回的数据类型
+            url: "/user/ajaxLogin" ,//url
+            data: $('#form1').serialize(),
+            success: function (result) {
+                // console.log(result);//打印服务端返回的数据
+                // alert(result);//弹框
+                if (result.code1 == 1) {
+                    window . location . href = '/user/index';
+                }else {
+                    $(".span1").html(result.name1);
                 }
-            });
+            },
+            error : function() {
+                alert("异常！");
+            }
         });
-    });
+    }
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.zx.service.UserService;
 import com.zx.utils.IsMobile;
 import com.zx.utils.ReturnJson;
 import com.zx.utils.ZongXiangResult;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -76,27 +78,30 @@ public class UserController {
      */
     @RequestMapping("/ajaxLogin")
     @ResponseBody
-
     public ZongXiangResult ajaxLogin(HttpServletRequest request, String username, String password) {
         System.out.println("登录验证");
-//        ZongXiangResult zongXiangResult =null;
+        Users users = userService.selectUsersByUserName(username);
         if (username.equals("")||password.equals("")){
             logger.error("用户名或者密码空");
-//            ZongXiangResult result3 = new ZongXiangResult(3,"用户名或者密码不能为空");
-            return  new ZongXiangResult(3,"用户名或者密码不能为空");
-        }
-        Users users = userService.selectUsersByUserName(username);
-        System.out.println("users="+users);
-        if (users==null||!password.equals(users.getPassword())){
+            ZongXiangResult zongXiangResult = new ZongXiangResult();
+            zongXiangResult.setCode1(3);
+            zongXiangResult.setName1("用户名或者密码不能为空");
+            return zongXiangResult;
+        } else if (users==null||!password.equals(users.getPassword())){
             logger.error("用户名或者密码不正确");
-//            ZongXiangResult result2 = new ZongXiangResult(2,"用户名或者密码不正确");
-            return new ZongXiangResult(2,"用户名或者密码不正确");
+            ZongXiangResult zongXiangResult = new ZongXiangResult();
+            zongXiangResult.setCode1(2);
+            zongXiangResult.setName1("用户名或者密码不正确");
+            return zongXiangResult;
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userName",username);
             logger.info(username+"登录成功");
-//            ZongXiangResult result1 = new ZongXiangResult(1,"登录成功");
-            return    new ZongXiangResult(1,"登录成功");
+            ZongXiangResult zongXiangResult = new ZongXiangResult();
+            zongXiangResult.setCode1(1);
+            zongXiangResult.setName1("登录成功");
+            String s = JSONObject.fromObject(zongXiangResult).toString();
+            return zongXiangResult;
         }
     }
 
