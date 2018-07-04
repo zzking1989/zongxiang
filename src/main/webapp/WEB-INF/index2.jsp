@@ -8,6 +8,7 @@
     <ul>
         <li><a href="#">${userName},欢迎!</a></li>
         <li><a href="/user/userMsg">我的详情</a></li>
+        <li><a href="/post/ueditor">发帖</a></li>
         <li><a href="/user/loginout">退出</a></li>
     </ul>
 </c:if>
