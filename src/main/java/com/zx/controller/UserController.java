@@ -100,7 +100,6 @@ public class UserController {
             ZongXiangResult zongXiangResult = new ZongXiangResult();
             zongXiangResult.setCode1(1);
             zongXiangResult.setName1("登录成功");
-            String s = JSONObject.fromObject(zongXiangResult).toString();
             return zongXiangResult;
         }
     }
