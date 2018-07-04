@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<h1>测试测试测试</h1>
+<h1>测试富文本输入</h1>
     <%--<!-- 加载编辑器的容器 -->--%>
     <%--<script id="container" name="content" type="text/plain">--%>
     <%--这里写你的初始化内容--%>
@@ -51,32 +51,32 @@
                 'forecolor', //字体颜色
                 //段落
                 'lineheight', //行间距
-                'paragraph', //段落格式
-                'customstyle', //自定义标题
+                // 'paragraph', //段落格式
+                // 'customstyle', //自定义标题
                 'justifyleft', //居左对齐
-                'justifyright', //居右对齐
                 'justifycenter', //居中对齐
+                'justifyright', //居右对齐
                 'justifyjustify', //两端对齐
                 // 'insertorderedlist', //有序列表
                 // 'insertunorderedlist', //无序列表
-                'directionalityltr', //从左向右输入
-                'directionalityrtl', //从右向左输入
+                // 'directionalityltr', //从左向右输入
+                // 'directionalityrtl', //从右向左输入
                 // 'rowspacingtop', //段前距
                 // 'rowspacingbottom', //段后距
                 'pagebreak', //分页
                 //整体效果
-                'autotypeset', //自动排版
+                // 'autotypeset', //自动排版
                 'fullscreen', //全屏
-                'selectall', //全选
                 'backcolor', //背景色
                 'horizontal', //分隔线
                 'removeformat', //清除格式
+                'selectall', //全选
                 'cleardoc', //清空文档
                 //工具
                 'time', //时间
                 'date', //日期
-                'unlink', //取消链接
                 'link', //超链接
+                'unlink', //取消链接
                 'emotion', //表情
                 'spechars', //特殊字符
                 'map', //Baidu地图
