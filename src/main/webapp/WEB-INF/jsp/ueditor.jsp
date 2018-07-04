@@ -16,10 +16,6 @@
 
 <body>
 <h1>测试富文本输入</h1>
-    <%--<!-- 加载编辑器的容器 -->--%>
-    <%--<script id="container" name="content" type="text/plain">--%>
-    <%--这里写你的初始化内容--%>
-    <%--</script>--%>
 <!-- 配置文件 -->
 <script type="text/javascript" src="../js/ueditor/ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
@@ -72,14 +68,7 @@
                 'removeformat', //清除格式
                 'selectall', //全选
                 'cleardoc', //清空文档
-                //工具
-                'time', //时间
-                'date', //日期
-                'link', //超链接
-                'unlink', //取消链接
-                'emotion', //表情
-                'spechars', //特殊字符
-                'map', //Baidu地图
+
                 //图片
                 'simpleupload', //单图上传
                 'insertimage', //多图上传
@@ -105,6 +94,14 @@
                 // 'deletetable', //删除表格
                 // 'edittable', //表格属性
                 // 'insertparagraphbeforetable', //"表格前插入行"
+                //工具
+                'date', //日期
+                'time', //时间
+                'link', //超链接
+                'unlink', //取消链接
+                'emotion', //表情
+                'spechars', //特殊字符
+                'map', //Baidu地图
 
                 //其他
                 // 'insertcode', //代码语言
@@ -136,14 +133,12 @@
         autoHeightEnabled: true,
         autoFloatEnabled: true
     });
-
-
 </script>
 
 
 
 <form  method="post" id="u" action="/post/save" >
-<textarea id="container" name="contents" style="width: 50%">UEditor Demo</textarea>
+<textarea id="container" name="contents" style="width: 70%">UEditor Demo</textarea>
 <input type="submit"  value="提交"/>
 </form>
 
