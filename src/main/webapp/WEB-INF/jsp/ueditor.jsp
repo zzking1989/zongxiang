@@ -17,9 +17,9 @@
 <body>
 <h1>测试富文本输入</h1>
 <!-- 配置文件 -->
-<script type="text/javascript" src="../js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
-<script type="text/javascript" src="../js/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="../ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     // 默认列表

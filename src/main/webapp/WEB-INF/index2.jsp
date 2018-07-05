@@ -21,7 +21,7 @@
 
 <h1>首页</h1>
 <h2>Hello World!</h2>
-
+<li><a href="/post/ueditor">发帖</a></li>
 <%--<a href="user/login">登录</a>--%>
 </body>
 </html>
