@@ -24,7 +24,8 @@
 <script type="text/javascript">
     // 默认列表
     // var ue = UE.getEditor('container');
-    // 简单列表
+
+    // 自定义列表
     var ue = UE.getEditor('container', {
         toolbars: [
             [
@@ -130,9 +131,19 @@
                 'help', //帮助
             ]
         ],
+
         autoHeightEnabled: true,
-        autoFloatEnabled: true
+        autoFloatEnabled: true,
+        //关闭字数统计
+        wordCount:false,
+        //关闭elementPath
+        elementPathEnabled:false,
+        //默认的编辑区域高度
+        initialFrameHeight:200,
+
     });
+
+
 </script>
 
 
