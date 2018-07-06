@@ -21,11 +21,6 @@ public class ZongXiangResult {
     private Object data1;
 
 
-    public Integer getCode1() {
-        return code1;
-    }
-
-
     @Override
     public String toString() {
         return "SportResult [code1=" + code1 + ", name1=" + name1 + ", data1="
