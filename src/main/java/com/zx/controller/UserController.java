@@ -55,7 +55,7 @@ public class UserController {
         String userName = session.getAttribute("userName").toString();
         model.addAttribute("userName",userName);
         }
-        return "index2";
+        return "main";
     }
     /**
      * 转跳登录
@@ -120,7 +120,7 @@ public class UserController {
         HttpSession session = request.getSession();
          session.removeAttribute("userName");
         System.out.println("用户退出");
-        return "index2";
+        return "main";
     }
     /**
      * 转跳用户详情

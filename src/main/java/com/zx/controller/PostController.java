@@ -48,15 +48,22 @@ public class PostController {
     @RequestMapping("/ueditor")
     public  String ueditor() {
         System.out.println("转跳富文本页面");
-        return "jsp/ueditor";
+        return "jsp/postSubmit";
     }
 
+    /**
+     * 接收帖子
+     * @param contents
+     * @param model
+     * @return
+     */
     @RequestMapping("/save")
 //    @ResponseBody
     public String save(String contents ,Model model ) {
         System.out.println("接收到的富文本:"+contents);
+        logger.info("");
         model.addAttribute("contents",contents);
-        return "jsp/ueditor2";
+        return "jsp/postDetails";
     }
 
 
