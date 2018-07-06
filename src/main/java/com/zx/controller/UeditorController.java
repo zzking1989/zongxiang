@@ -35,6 +35,7 @@ public class UeditorController {
             out = response.getWriter();
             out.write(new ActionEnter(request, rootPath).exec());
             out.flush();
+            logger.info("百度编辑器初始化成功！");
         } catch (IOException e) {
             logger.error("百度编辑器初始化错误！", e);
             e.printStackTrace();
