@@ -131,13 +131,10 @@
                 'help', //帮助
             ]
         ],
-
-        autoHeightEnabled: true,
-        autoFloatEnabled: true,
-        //关闭字数统计
-        wordCount:false,
-        //关闭elementPath
-        elementPathEnabled:false,
+        //是否关闭字数统计
+        // wordCount:false,
+        //允许的最大字符数
+        maximumWords:5000,
         //默认的编辑区域高度
         initialFrameHeight:200,
 

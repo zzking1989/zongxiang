@@ -19,11 +19,7 @@
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
-
-    // window.UEDITOR_HOME_URL ="http://localhost/zx/ueditor/";
-
-    // var URL = "http://localhost/zx/ueditor/";
-    URL = window.UEDITOR_HOME_URL || getUEBasePath();
+    var URL = window.UEDITOR_HOME_URL || getUEBasePath();
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */
@@ -33,9 +29,25 @@
         UEDITOR_HOME_URL: URL
 
         // 服务器统一请求接口路径
-        , serverUrl: URL + "jsp/controller.jsp"
-        // ,serverUrl: "/post/upload"
-        // ,serverUrl: "/post/action"
+        // , serverUrl: URL + "jsp/controller.jsp"
+        ,serverUrl: "/UeditorController/upload"
+
+
+    // var getConfigPath = function () {
+    //     var curWwwPath =window.document.location.href;
+    //     var pathName = window.document.location.pathname;
+    //     var pos = curWwwPath.indexOf(pathName);
+    //     var localhostPaht = curWwwPath.substring(0,pos);
+    //     var projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    //     return localhostPaht;
+    //     }
+    //     var applicationPath = getConfigPath();
+    // var tmp =window.location.pathname;
+    // var URL =window.UEDITOR_HOME_URL ||tmp.substr(0,tmp.lastIndexOf("\/")+1).replace("_examples","").replace("website","");
+    // window,UEDITOR_CONFIG ={
+    //     UEDITOR_HOME_URL:URL
+    //     ,serverUrl: "/UeditorController/upload"
+
 
 
 
@@ -184,19 +196,19 @@
 
         //fontfamily
         //字体设置 label留空支持多语言自动切换，若配置，则以配置值为准
-        //,'fontfamily':[
-        //    { label:'',name:'songti',val:'宋体,SimSun'},
-        //    { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
-        //    { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
-        //    { label:'',name:'heiti',val:'黑体, SimHei'},
-        //    { label:'',name:'lishu',val:'隶书, SimLi'},
+        ,'fontfamily':[
+           { label:'',name:'songti',val:'宋体,SimSun'},
+           { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
+           { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
+           { label:'',name:'heiti',val:'黑体, SimHei'},
+           { label:'',name:'lishu',val:'隶书, SimLi'},
         //    { label:'',name:'andaleMono',val:'andale mono'},
         //    { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
         //    { label:'',name:'arialBlack',val:'arial black,avant garde'},
         //    { label:'',name:'comicSansMs',val:'comic sans ms'},
         //    { label:'',name:'impact',val:'impact,chicago'},
         //    { label:'',name:'timesNewRoman',val:'times new roman'}
-        //]
+        ]
 
         //fontsize
         //字号
@@ -254,15 +266,15 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        //,elementPathEnabled : true
+        ,elementPathEnabled : false
 
         //wordCount
-        //,wordCount:true          //是否开启字数统计
-        //,maximumWords:10000       //允许的最大字符数
+        ,wordCount:true          //是否开启字数统计
+        ,maximumWords:10000       //允许的最大字符数
         //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
         //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
         //超出字数限制提示  留空支持多语言自动切换，否则按此配置显示
-        //,wordOverFlowMsg:''    //<span style="color:red;">你输入的字符个数已经超出最大允许值，服务器可能会拒绝保存！</span>
+        ,wordOverFlowMsg:'你输入的字符个数已经超出最大允许值'    //<span style="color:red;">你输入的字符个数已经超出最大允许值，服务器可能会拒绝保存！</span>
 
         //tab
         //点击tab键时移动的距离,tabSize倍数，tabNode什么字符做为单位
@@ -284,7 +296,7 @@
 
         //autoHeightEnabled
         // 是否自动长高,默认true
-        //,autoHeightEnabled:true
+        ,autoHeightEnabled:true
 
         //scaleEnabled
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
@@ -294,7 +306,7 @@
 
         //autoFloatEnabled
         //是否保持toolbar的位置不动,默认true
-        //,autoFloatEnabled:true
+        ,autoFloatEnabled:true
         //浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
         //,topOffset:30
         //编辑器底部距离工具栏高度(如果参数大于等于编辑器高度，则设置无效)
@@ -309,23 +321,23 @@
 
         //autotypeset
         //自动排版参数
-        //,autotypeset: {
-        //    mergeEmptyline: true,           //合并空行
-        //    removeClass: true,              //去掉冗余的class
-        //    removeEmptyline: false,         //去掉空行
-        //    textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
-        //    imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
-        //    pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
-        //    clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
-        //    clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
-        //    removeEmptyNode: false,         // 去掉空节点
-        //    //可以去掉的标签
-        //    removeTagNames: {标签名字:1},
-        //    indent: false,                  // 行首缩进
-        //    indentValue : '2em',            //行首缩进的大小
-        //    bdc2sb: false,
-        //    tobdc: false
-        //}
+        ,autotypeset: {
+           mergeEmptyline: true,           //合并空行
+           removeClass: true,              //去掉冗余的class
+           removeEmptyline: false,         //去掉空行
+           textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+           imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+           pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
+           clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+           clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
+           removeEmptyNode: false,         // 去掉空节点
+           //可以去掉的标签
+           removeTagNames: {标签名字:1},
+           indent: false,                  // 行首缩进
+           indentValue : '2em',            //行首缩进的大小
+           bdc2sb: false,
+           tobdc: false
+        }
 
         //tableDragable
         //表格是否可以拖拽
