@@ -34,24 +34,31 @@
      </form>
 <script>
     function login() {
-        $.ajax({
-            type: "POST",//方法类型
-            dataType: "",//预期服务器返回的数据类型
-            url: "/user/ajaxLogin" ,//url
-            data: $('#form1').serialize(),
-            success: function (result) {
-                // console.log(result);//打印服务端返回的数据
-                // alert(result);//弹框
-                if (result.code1 == 1) {
-                    window . location . href = '/user/index';
-                }else {
-                    $(".span1").html(result.name1);
+        var loginFormValues = document.getElementById("form1")
+        if (loginFormValues.elements[0].value == "") {
+            $(".span1").html("用户名不能为空！");
+        } else if (loginFormValues.elements[1].value == "") {
+            $(".span1").html("密码不能为空！");
+        } else {
+            $.ajax({
+                type: "POST",//方法类型
+                dataType: "",//预期服务器返回的数据类型
+                url: "/user/ajaxLogin",//url
+                data: $('#form1').serialize(),
+                success: function (result) {
+                    // console.log(result);//打印服务端返回的数据
+                    // alert(result);//弹框
+                    if (result.code1 == 1) {
+                        window.location.href = '/user/index';
+                    } else {
+                        $(".span1").html(result.name1);
+                    }
+                },
+                error: function () {
+                    alert("异常！");
                 }
-            },
-            error : function() {
-                alert("异常！");
-            }
-        });
+            });
+        }
     }
 </script>
 </body>

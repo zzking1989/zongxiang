@@ -30,17 +30,19 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-//    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    //    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     UserService userService;
+
     /**
      * 转跳首页
+     *
      * @param
      * @return
      * @throws
      */
     @RequestMapping("/index")
-    public  String index(HttpServletRequest request, Model model) {
+    public String index(HttpServletRequest request, Model model) {
 //查询系统+浏览器
         String osAndBrowserInfo = IsMobile.getOsAndBrowserInfo(request);
         System.out.println(osAndBrowserInfo);
@@ -52,25 +54,28 @@ public class UserController {
 //            logger.info("使用web浏览器转跳首页");
 //        }
         HttpSession session = request.getSession();
-        if (session.getAttribute("userName")!=null&&session.getAttribute("userName")!=""){
-        String userName = session.getAttribute("userName").toString();
-        model.addAttribute("userName",userName);
+        if (session.getAttribute("userName") != null && session.getAttribute("userName") != "") {
+            String userName = session.getAttribute("userName").toString();
+            model.addAttribute("userName", userName);
         }
         return "main";
     }
+
     /**
      * 转跳登录
+     *
      * @param
      * @return
      */
-	@RequestMapping("/login")
-    public  String login() {
+    @RequestMapping("/login")
+    public String login() {
         System.out.println("转跳登录页面");
         return "jsp/login";
     }
 
     /**
      * 登录验证
+     *
      * @param request
      * @param
      * @param
@@ -82,7 +87,7 @@ public class UserController {
         //取值方法1 接收前台传过来的一个指定的参数
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        log.info("request:"+"username="+username+"password="+password);
+        log.info("request:" + "username=" + username + "password=" + password);
 //        //取值方法2 留着不要删除以后用
 //        Map<String,String> params = new HashMap<>();
 //        //getParameterMap()一般多用于接收前台表单多参数传输的数据
@@ -103,57 +108,55 @@ public class UserController {
 //        String password = params.get("password");
 
 
-
-
         Users users = userService.selectUsersByUserName(username);
-        if (username.equals("")||password.equals("")){
-            log.error("用户名或者密码空");
-            return new ZongXiangResult(3,"用户名或者密码不能为空",null);
-        } else if (users==null||!password.equals(users.getPassword())){
+        if (users == null || !password.equals(users.getPassword())) {
             log.error("用户名或者密码不正确");
-            return new ZongXiangResult(2,"用户名或者密码不正确",null);
-        }else {
+            return new ZongXiangResult(2, "用户名或者密码不正确", null);
+        } else {
             HttpSession session = request.getSession();
-            session.setAttribute("userName",username);
-            log.info(username+"登录成功");
-            return  new ZongXiangResult(1,"登录成功",null);
+            session.setAttribute("userName", username);
+            log.info(username + "登录成功");
+            return new ZongXiangResult(1, "登录成功", null);
         }
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
             throws Exception {
-            userService.saveUsers(users,titleImg);
+        userService.saveUsers(users, titleImg);
         return "redirect:/user/userMsg";
     }
+
     /**
      * 用户退出
+     *
      * @param
      * @return
      */
     @RequestMapping("/loginout")
-    public  String loginout(HttpServletRequest request) {
+    public String loginout(HttpServletRequest request) {
         HttpSession session = request.getSession();
-         session.removeAttribute("userName");
+        session.removeAttribute("userName");
         System.out.println("用户退出");
         return "main";
     }
+
     /**
      * 转跳用户详情
+     *
      * @param
      * @return
      */
     @RequestMapping("/userMsg")
-    public  String userMsg(Model model) {
+    public String userMsg(Model model) {
         System.out.println("转跳用户详情页面");
         Users users = userService.selectUsersById(1L);
-        String img =configuration.URL+users.getUserPortrait().replace("\\","/");
+        String img = configuration.URL + users.getUserPortrait().replace("\\", "/");
         System.out.println(img);
         users.setUserPortrait(img);
-        model.addAttribute("user",users);
+        model.addAttribute("user", users);
         return "jsp/userMsg";
     }
-
 
 
 }
