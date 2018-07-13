@@ -1,6 +1,8 @@
 package com.zx.controller;
 
 import com.baidu.ueditor.ActionEnter;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.fileupload.FileItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +39,10 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/post")
+@Slf4j
 public class PostController {
-    private static final Logger logger = LoggerFactory.getLogger(PostController.class);
+//    private static final Logger log = LoggerFactory.getLogger(PostController.class);
+
 
     /**
      * 转跳到富文本页面
@@ -61,7 +65,7 @@ public class PostController {
 //    @ResponseBody
     public String save(String contents ,Model model ) {
         System.out.println("接收到的富文本:"+contents);
-        logger.info("");
+        log.info("");
         model.addAttribute("contents",contents);
         return "jsp/postDetails";
     }

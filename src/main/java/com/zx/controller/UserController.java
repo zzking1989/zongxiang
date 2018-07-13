@@ -9,6 +9,8 @@ import com.zx.utils.configuration;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +39,11 @@ import java.util.regex.Pattern;
  * @author cd
  * @since 2018-06-25
  */
+@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+//    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     UserService userService;
     /**
@@ -92,8 +95,8 @@ public class UserController {
         //取值方法1 接收前台传过来的一个指定的参数
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        logger.info("request:"+"username="+username+"password="+password);
-//        //取值方法2
+        log.info("request:"+"username="+username+"password="+password);
+//        //取值方法2 留着不要删除以后用
 //        Map<String,String> params = new HashMap<>();
 //        //getParameterMap()一般多用于接收前台表单多参数传输的数据
 //        Map requestParams = request.getParameterMap();
@@ -117,15 +120,15 @@ public class UserController {
 
         Users users = userService.selectUsersByUserName(username);
         if (username.equals("")||password.equals("")){
-            logger.error("用户名或者密码空");
+            log.error("用户名或者密码空");
             return new ZongXiangResult(3,"用户名或者密码不能为空",null);
         } else if (users==null||!password.equals(users.getPassword())){
-            logger.error("用户名或者密码不正确");
+            log.error("用户名或者密码不正确");
             return new ZongXiangResult(2,"用户名或者密码不正确",null);
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userName",username);
-            logger.info(username+"登录成功");
+            log.info(username+"登录成功");
             return  new ZongXiangResult(1,"登录成功",null);
         }
     }
