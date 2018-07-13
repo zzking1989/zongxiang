@@ -1,12 +1,14 @@
 package com.zx.controller;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.zx.model.Users;
 import com.zx.service.UserService;
 import com.zx.utils.IsMobile;
-import com.zx.utils.ReturnJson;
 import com.zx.utils.ZongXiangResult;
 import com.zx.utils.configuration;
-import net.sf.json.JSONObject;
+import eu.bitwalker.useragentutils.Browser;
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import javax.xml.ws.Response;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -44,12 +51,16 @@ public class UserController {
      */
     @RequestMapping("/index")
     public  String index(HttpServletRequest request, Model model) {
-        String requestHeader = request.getHeader("user-agent");
-        if(IsMobile.isMobileDevice(requestHeader)){
-            logger.info("使用手机浏览器转跳首页");
-        }else{
-            logger.info("使用web浏览器转跳首页");
-        }
+
+        String osAndBrowserInfo = IsMobile.getOsAndBrowserInfo(request);
+        System.out.println(osAndBrowserInfo);
+
+
+//        if(IsMobile.isMobileDevice(request)){
+//            logger.info("使用手机浏览器转跳首页");
+//        }else{
+//            logger.info("使用web浏览器转跳首页");
+//        }
         HttpSession session = request.getSession();
         if (session.getAttribute("userName")!=null&&session.getAttribute("userName")!=""){
         String userName = session.getAttribute("userName").toString();
@@ -61,7 +72,6 @@ public class UserController {
      * 转跳登录
      * @param
      * @return
-     * @throws IOException
      */
 	@RequestMapping("/login")
     public  String login() {
@@ -72,35 +82,51 @@ public class UserController {
     /**
      * 登录验证
      * @param request
-     * @param username
-     * @param password
+     * @param
+     * @param
      * @return
      */
     @RequestMapping("/ajaxLogin")
     @ResponseBody
-    public ZongXiangResult ajaxLogin(HttpServletRequest request, String username, String password) {
-        System.out.println("登录验证");
+    public ZongXiangResult ajaxLogin(HttpServletRequest request) {
+        //取值方法1 接收前台传过来的一个指定的参数
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        logger.info("request:"+"username="+username+"password="+password);
+//        //取值方法2
+//        Map<String,String> params = new HashMap<>();
+//        //getParameterMap()一般多用于接收前台表单多参数传输的数据
+//        Map requestParams = request.getParameterMap();
+//        System.out.println(requestParams.toString());
+//        for(Iterator iter = requestParams.keySet().iterator(); iter.hasNext();){
+//            String name = (String)iter.next();
+//            String[] values = (String[]) requestParams.get(name);
+//            String valueStr = "";
+//            for(int i = 0 ; i <values.length;i++){
+//                valueStr = (i == values.length -1)?valueStr + values[i]:valueStr + values[i]+",";
+//            }
+//            //把数据全部加进map集合中
+//            params.put(name,valueStr);
+//        }
+//        logger.info("requestmap",params.get("username"),params.get("password"),params.toString());
+//        String username = params.get("username");
+//        String password = params.get("password");
+
+
+
+
         Users users = userService.selectUsersByUserName(username);
         if (username.equals("")||password.equals("")){
             logger.error("用户名或者密码空");
-            ZongXiangResult zongXiangResult = new ZongXiangResult();
-            zongXiangResult.setCode1(3);
-            zongXiangResult.setName1("用户名或者密码不能为空");
-            return zongXiangResult;
+            return new ZongXiangResult(3,"用户名或者密码不能为空",null);
         } else if (users==null||!password.equals(users.getPassword())){
             logger.error("用户名或者密码不正确");
-            ZongXiangResult zongXiangResult = new ZongXiangResult();
-            zongXiangResult.setCode1(2);
-            zongXiangResult.setName1("用户名或者密码不正确");
-            return zongXiangResult;
+            return new ZongXiangResult(2,"用户名或者密码不正确",null);
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userName",username);
             logger.info(username+"登录成功");
-            ZongXiangResult zongXiangResult = new ZongXiangResult();
-            zongXiangResult.setCode1(1);
-            zongXiangResult.setName1("登录成功");
-            return zongXiangResult;
+            return  new ZongXiangResult(1,"登录成功",null);
         }
     }
 
