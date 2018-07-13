@@ -1,18 +1,11 @@
 package com.zx.controller;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.zx.model.Users;
 import com.zx.service.UserService;
 import com.zx.utils.IsMobile;
 import com.zx.utils.ZongXiangResult;
 import com.zx.utils.configuration;
-import eu.bitwalker.useragentutils.Browser;
-import eu.bitwalker.useragentutils.OperatingSystem;
-import eu.bitwalker.useragentutils.UserAgent;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -54,7 +41,7 @@ public class UserController {
      */
     @RequestMapping("/index")
     public  String index(HttpServletRequest request, Model model) {
-
+//查询系统+浏览器
         String osAndBrowserInfo = IsMobile.getOsAndBrowserInfo(request);
         System.out.println(osAndBrowserInfo);
 
