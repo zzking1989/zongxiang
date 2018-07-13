@@ -120,6 +120,12 @@ public class UserController {
         }
     }
 
+    @RequestMapping("register")
+    public String register() {
+        System.out.println("转跳注册页面");
+        return "/jsp/register";
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
             throws Exception {

@@ -14,7 +14,7 @@
 </c:if>
 <c:if test="${empty userName}">
     <ul>
-        <li><a href="">注册</a></li>
+        <li><a href="/user/register">注册</a></li>
         <li><a href="/user/login">登录</a></li>
     </ul>
 </c:if>
