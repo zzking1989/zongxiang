@@ -126,11 +126,23 @@ public class UserController {
         return "/jsp/register";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping("/save")
+    @ResponseBody
     public String save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
             throws Exception {
         userService.saveUsers(users, titleImg);
         return "redirect:/user/userMsg";
+//        return new ZongXiangResult(1, "注册成功", null);
+    }
+    @RequestMapping("/userNameVerify")
+    @ResponseBody
+    public ZongXiangResult userNameVerify(String userName) {
+        Users users = userService.selectUsersByUserName(userName);
+        if (users!=null) {
+            return new ZongXiangResult(2, "用户名已被使用", null);
+        }else {
+            return new ZongXiangResult(1, "此用户名可用", null);
+        }
     }
 
     /**
