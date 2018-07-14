@@ -38,7 +38,6 @@
                 <input type="text" class="form-control" style="width: 400px" id="repeatPassword" placeholder="请输入名称">
                 <span class="span3" id="repeatPasswordSpan" style="color: brown" hidden>重复密码不能为空！</span>
             </div>
-            <input type="file" id="titleImg" name="titleImg" hidden />
             <div class="form-group" style="width: 400px;">
                 <button type="submit" class="btn btn-primary" onclick="register()" style="width: 100px">提交</button>
             </div>
@@ -69,7 +68,6 @@
     }
     function username() {
         var userName =$('#userName').val().toString();
-        alert(userName)
         $.ajax({
                 type: "POST",//方法类型
                 dataType: "",//预期服务器返回的数据类型

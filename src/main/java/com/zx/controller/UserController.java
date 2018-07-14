@@ -127,7 +127,6 @@ public class UserController {
     }
 
     @RequestMapping("/save")
-    @ResponseBody
     public String save(Users users, @RequestParam(value = "titleImg", required = false) MultipartFile titleImg)
             throws Exception {
         userService.saveUsers(users, titleImg);
